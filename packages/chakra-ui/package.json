@@ -1,0 +1,22 @@
+{
+  "name": "@rong-form-pro/chakra-ui",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@chakra-ui/react": "^1.6.0",
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.3.0",
+    "framer-motion": "^4.1.10",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "rong-form": "^0.1.0"
+  }
+}
