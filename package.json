@@ -1,0 +1,27 @@
+{
+  "name": "rong-form-pro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bootstrap": "lerna bootstrap",
+    "clean": "lerna clean --yes",
+    "build": "lerna run build",
+    "start": "npm run dev",
+    "dev": "dumi dev"
+  
+  },
+  "workspaces":["packages/*"],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lerna": "^4.0.0",
+    "dumi": "^1.1.7",
+    "enzyme": "^3.10.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "@types/jest": "^24.9.1"
+  }
+}
