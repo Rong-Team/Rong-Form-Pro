@@ -257,7 +257,7 @@ export interface IFieldStore {
 
 }
 
-export interface SchemaField {
+export interface SchemaField  {
     title: string
     name: string
     type: 'string' | 'number' | 'boolean' | 'array' | 'object' | 'list'
@@ -318,3 +318,9 @@ export interface SchemaType {
 }
 
 
+export interface ComponentBaseProps {
+    isRequired?:boolean
+    isDisabled?:boolean
+    isReadOnly?:boolean
+    isInvalid?:boolean
+}
