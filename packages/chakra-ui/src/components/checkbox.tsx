@@ -9,6 +9,7 @@ export interface CheckboxInterfaces {
     name: string
     direction: 'column' | 'row'
     spacing:string
+    
 }
 
 
@@ -32,11 +33,11 @@ const Checkboxes: React.FC<CheckboxInterfaces> = ({
         return <Checkbox size={size} colorScheme={colorScheme} value={valueSet[a]}>{a}</Checkbox>
     }
 
-    return (isGroup() ? <CheckboxGroup colorScheme={colorScheme} size={size} defaultValue={defaultChecked} >
+    return (isGroup() ? <CheckboxGroup   colorScheme={colorScheme} size={size} defaultValue={defaultChecked} >
         <Stack direction={direction} spacing={spacing}>
             {
                 Object.keys(valueSet).map((item, index) => {
-                    return <Checkbox isDisabled={isDisabled(valueSet[item])} value={valueSet[item]} key={name + index}>{item}</Checkbox>
+                    return <Checkbox  isDisabled={isDisabled(valueSet[item])} value={valueSet[item]} key={name + index}>{item}</Checkbox>
                 })
             }
         </Stack>
