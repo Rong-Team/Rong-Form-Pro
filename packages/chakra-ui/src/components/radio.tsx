@@ -1,21 +1,21 @@
 import { Radio, RadioGroup, Stack } from "@chakra-ui/react"
+import { ComponentUnionProps } from "../interface"
 
-export interface RadioesInterface {
-    direction: 'row' | 'column'
-    defaultValue: string
+export interface RadioesInterface extends ComponentUnionProps {
+    direction?: 'row' | 'column'
+    defaultValue?: string
     valueSet: { [name: string]: string }
     disabled?: string[]
     name: string
-    colorScheme?: string
 }
 
-const Radioes: React.FC<RadioesInterface> = ({ valueSet, name, colorScheme, defaultValue, direction, disabled }) => {
+const Radioes: React.FC<RadioesInterface> = ({ valueSet, direction, disabled ,name,...props}) => {
     const isDisabled = (val: string) => {
         return disabled?.includes(val)
     }
 
     return (
-        <RadioGroup  colorScheme={colorScheme} defaultValue={defaultValue} name={name} >
+        <RadioGroup   name={name}  {...props} >
             <Stack direction={direction}>
                 {
                     Object.keys(valueSet).map((item, index) => {
