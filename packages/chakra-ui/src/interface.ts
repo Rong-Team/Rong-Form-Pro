@@ -257,23 +257,24 @@ export interface IFieldStore {
 
 }
 
-export interface SchemaField  {
+export interface SchemaField {
     title: string
     name: string
     type: 'string' | 'number' | 'boolean' | 'array' | 'object' | 'list'
     widget?: string
-    componentprops?: {
-        name?: 'input' | 'select',
-        type?: 'checkbox' | 'color' | 'date' | 'datetime-local' | 'email' | 'password' | 'url' |
-        'file' | 'month' | 'number' | 'radio' | 'range' | 'week' | 'text'
+    componentprops: {
+
+        type: 'checkbox' | 'color' | 'date' | 'datetime-local' | 'email' | 'password' | 'url' |
+        'file' | 'month' | 'number' | 'radio' | 'range' | 'week' | 'text' | 'select' | 'pinInput'
         trigger?: string
         valueProps?: string
         select?: {
-            optionValues: string[]
-            optionNames: string[]
-            defaultValue?: string[],
+            valueSet: { [name: string]: string }
             multiple?: boolean
         },
+        checkbox?: {
+            valueSet: { [name: string]: string }
+        }
 
         // used in range and number
         range?: {
@@ -281,6 +282,17 @@ export interface SchemaField  {
             max?: number
             step?: number
         },
+        number?: {
+            min?: number
+            max?: number
+            step?: number
+        },
+        radio?: {
+            valueSet: { [name: string]: string }
+        },
+        pinInput?:{
+            length:number
+        }
         //used in date related
         date?: {
             min?: string,
@@ -293,11 +305,13 @@ export interface SchemaField  {
 
     },
 
+    uistyle: {}
+
     listChildren?: { [name: string]: SchemaField }
 
     required?: boolean
     placeholder?: string,
-    defaultValues?: any,
+    defaultValue?: any,
     // list of dependencies
     dependencies?: string[],
     // used for handle dependencies
@@ -307,9 +321,9 @@ export interface SchemaField  {
 
 export interface SchemaType {
     name: string
-    displayType?:'vertical'|'horizontal'
-    customized?:boolean
-    properties?: {
+    displayType?: 'vertical' | 'horizontal'
+    customized?: boolean
+    properties: {
         [name: string]: SchemaField
     }
 
@@ -319,8 +333,19 @@ export interface SchemaType {
 
 
 export interface ComponentBaseProps {
-    isRequired?:boolean
-    isDisabled?:boolean
-    isReadOnly?:boolean
-    isInvalid?:boolean
+    isRequired?: boolean
+    isDisabled?: boolean
+    isReadOnly?: boolean
+    isInvalid?: boolean
+    onChange?: any
+    value?: any
 }
+
+
+export interface ComponentUIProps {
+    size?: 'xs' | 'sm' | 'md' | 'lg'
+    varient?: "outline" | "unstyled" | "filled" | "flushed"
+    colorCheme?: string
+}
+
+export type ComponentUnionProps = ComponentBaseProps & ComponentUIProps
