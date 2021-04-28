@@ -13,8 +13,17 @@
     "@chakra-ui/react": "^1.6.0",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.3.0",
+    "@types/react": "^17.0.4",
     "framer-motion": "^4.1.10",
+    "react": "^17.0.2",
     "typescript": "^4.2.4"
+  },
+  "peerDependencies": {
+    "@chakra-ui/react": "^1.6.0",
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.3.0",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
   "dependencies": {
     "rong-form": "^0.1.0"
