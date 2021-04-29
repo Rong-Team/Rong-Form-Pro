@@ -260,12 +260,13 @@ export interface IFieldStore {
 export interface SchemaField {
     title: string
     name: string
+    help?: string
     type: 'string' | 'number' | 'boolean' | 'array' | 'object' | 'list'
     widget?: string
     componentprops: {
 
         type: 'checkbox' | 'color' | 'date' | 'datetime-local' | 'email' | 'password' | 'url' |
-        'file' | 'month' | 'number' | 'radio' | 'range' | 'week' | 'text' | 'select' | 'pinInput'
+        'file' | 'month' | 'number' | 'radio' | 'range' | 'week' | 'text' | 'select' | 'pinInput' | 'textarea' | 'switch'
         trigger?: string
         valueProps?: string
         select?: {
@@ -273,7 +274,9 @@ export interface SchemaField {
             multiple?: boolean
         },
         checkbox?: {
-            valueSet: { [name: string]: string }
+            valueSet: { [name: string]: string },
+            disabled?: string[]
+            direction?: 'column' | 'row'
         }
 
         // used in range and number
@@ -281,17 +284,25 @@ export interface SchemaField {
             min?: number
             max?: number
             step?: number
+            orientation?: 'vertical' | 'horizontal'
         },
         number?: {
             min?: number
             max?: number
             step?: number
+            precision?: number
         },
+        textarea?: {
+            resize?: 'horizontal' | 'vertical' | 'none'
+        }
         radio?: {
             valueSet: { [name: string]: string }
         },
-        pinInput?:{
-            length:number
+        pinInput?: {
+            length: number
+            type?: 'alphanumeric' | 'number'
+            opt?: boolean
+            mask?: boolean
         }
         //used in date related
         date?: {
@@ -305,7 +316,9 @@ export interface SchemaField {
 
     },
 
-    uistyle: {}
+    uistyle?: {
+
+    }
 
     listChildren?: { [name: string]: SchemaField }
 
@@ -327,7 +340,9 @@ export interface SchemaType {
         [name: string]: SchemaField
     }
 
+    uistyle?: {
 
+    }
 
 }
 
@@ -339,6 +354,7 @@ export interface ComponentBaseProps {
     isInvalid?: boolean
     onChange?: any
     value?: any
+    checked?:any
 }
 
 
