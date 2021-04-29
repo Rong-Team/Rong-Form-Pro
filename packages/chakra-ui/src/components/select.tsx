@@ -4,12 +4,10 @@ import { ComponentBaseProps } from "../interface"
 
 export interface SelectProps extends ComponentBaseProps {
     placeholder?:string
-    size?:'sm'|'md'|'lg'
-    varient?:'outline'|'filled'|'flushed'|'unstyled'
     name:string 
     valueSet:{[name:string]:string}
     multiple?:boolean
-    defaultValue:string|string[]
+    defaultValue?:string|string[]
    
 }
 
