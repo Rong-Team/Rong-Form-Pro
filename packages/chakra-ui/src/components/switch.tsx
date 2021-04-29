@@ -12,7 +12,7 @@ export interface SwitchProps extends ComponentBaseProps {
 const SwitchComp :React.FC<SwitchProps>=(props)=>{
 
     return (
-        <Switch {...props} ></Switch>
+        <Switch  {...props} ></Switch>
     )
 }
 
