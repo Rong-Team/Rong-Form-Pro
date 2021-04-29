@@ -259,7 +259,7 @@ export interface IFieldStore {
 
 export interface SchemaField {
     title: string
-    name: string
+    name: string | string[]
     help?: string
     type: 'string' | 'number' | 'boolean' | 'array' | 'object' | 'list'
     widget?: string
@@ -313,15 +313,20 @@ export interface SchemaField {
             accept?: string
         },
 
+        list:{
+            showAdd?:boolean
+            addText?:string
+            showRemove?:boolean
+            
+        }
 
     },
 
     uistyle?: {
 
     }
-
+    isListChild?: boolean
     listChildren?: { [name: string]: SchemaField }
-
     required?: boolean
     placeholder?: string,
     defaultValue?: any,
@@ -334,7 +339,7 @@ export interface SchemaField {
 
 export interface SchemaType {
     name: string
-    displayType?: 'vertical' | 'horizontal'
+    displayType?: 'column' | 'row'
     customized?: boolean
     properties: {
         [name: string]: SchemaField
@@ -354,7 +359,7 @@ export interface ComponentBaseProps {
     isInvalid?: boolean
     onChange?: any
     value?: any
-    checked?:any
+    checked?: any
 }
 
 
