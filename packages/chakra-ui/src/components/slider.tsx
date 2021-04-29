@@ -1,10 +1,9 @@
 import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from "@chakra-ui/react"
 import React from "react"
-import { ComponentBaseProps } from "../interface"
+import { ComponentBaseProps, ComponentUnionProps } from "../interface"
 
-export interface SliderProps extends ComponentBaseProps {
+export interface SliderProps extends ComponentUnionProps {
     defaultValue?: number
-    colorScheme?: string
     orientation?: 'vertical' | 'horizontal'
     min?: number
     max?: number
