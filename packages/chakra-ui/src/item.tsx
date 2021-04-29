@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react"
 
 
-const RenderChild: React.FC<SchemaField> = ({ name, componentprops, title, dependencies, help }) => {
+const RenderChild: React.FC<SchemaField> = ({ name, componentprops, title, dependencies, help,isListChild }) => {
 
     const fieldPorps = () => {
         const type = componentprops.type
@@ -62,7 +62,7 @@ const RenderChild: React.FC<SchemaField> = ({ name, componentprops, title, depen
     }
 
     return (
-        <Field name={name} dependencies={dependencies}  {...fieldPorps()}>
+        <Field name={name} isListField={isListChild} dependencies={dependencies}  {...fieldPorps()}>
             {
                 (control, meta, dependencies) => {
                     return (
@@ -82,3 +82,5 @@ const RenderChild: React.FC<SchemaField> = ({ name, componentprops, title, depen
         </Field>
     )
 }
+
+export default RenderChild
