@@ -1,7 +1,6 @@
 import { Checkbox, CheckboxGroup, Stack } from '@chakra-ui/react'
 import { ComponentUnionProps } from '../interface'
 export interface CheckboxInterfaces extends ComponentUnionProps {
-    colorScheme?: string
     valueSet: { [name: string]: string },
     defaultValue?: string[]
     disabled?: string[]
