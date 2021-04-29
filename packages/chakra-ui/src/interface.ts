@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { ReactElement, ReducerAction } from 'react';
+import { UIInterface } from './context';
 
 
 export type InternalNamePath = (string | number)[];
@@ -259,7 +260,7 @@ export interface IFieldStore {
 
 export interface SchemaField {
     title: string
-    name: string | string[]
+    name: string 
     help?: string
     type: 'string' | 'number' | 'boolean' | 'array' | 'object' | 'list'
     widget?: string
@@ -317,14 +318,12 @@ export interface SchemaField {
             showAdd?:boolean
             addText?:string
             showRemove?:boolean
-            
+            defaultValue?:any
         }
 
     },
 
-    uistyle?: {
-
-    }
+    uistyle?: UIInterface
     isListChild?: boolean
     listChildren?: { [name: string]: SchemaField }
     required?: boolean
@@ -345,9 +344,7 @@ export interface SchemaType {
         [name: string]: SchemaField
     }
 
-    uistyle?: {
-
-    }
+    uistyle?: UIInterface
 
 }
 
@@ -363,10 +360,6 @@ export interface ComponentBaseProps {
 }
 
 
-export interface ComponentUIProps {
-    size?: 'xs' | 'sm' | 'md' | 'lg'
-    varient?: "outline" | "unstyled" | "filled" | "flushed"
-    colorCheme?: string
-}
 
-export type ComponentUnionProps = ComponentBaseProps & ComponentUIProps
+
+export type ComponentUnionProps = ComponentBaseProps & UIInterface
