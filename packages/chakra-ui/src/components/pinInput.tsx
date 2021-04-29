@@ -14,7 +14,7 @@ export interface PinInputProps extends ComponentUnionProps {
 
 const PinInputComp: React.FC<PinInputProps> = ({ name, length, ...props }) => {
     return (<HStack>
-        <PinInput {...props} >
+        <PinInput  {...props} >
             {
                 Array(length).map((each, index) => {
                     return (
