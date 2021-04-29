@@ -1,6 +1,6 @@
 import { HStack, PinInput, PinInputField } from "@chakra-ui/react";
 import React from "react";
-import { ComponentBaseProps, ComponentUIProps, ComponentUnionProps } from "../interface";
+import { ComponentBaseProps,  ComponentUnionProps } from "../interface";
 
 
 export interface PinInputProps extends ComponentUnionProps {
