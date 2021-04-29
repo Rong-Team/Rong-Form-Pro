@@ -1,5 +1,5 @@
 import { Input } from "@chakra-ui/react";
-import { ComponentBaseProps, ComponentUIProps, ComponentUnionProps } from "../interface";
+import { ComponentBaseProps,  ComponentUnionProps } from "../interface";
 
 
 
