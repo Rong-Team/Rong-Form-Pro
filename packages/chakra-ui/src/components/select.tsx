@@ -1,8 +1,8 @@
 import { Select } from "@chakra-ui/react"
-import { ComponentBaseProps } from "../interface"
+import { ComponentBaseProps, ComponentUnionProps } from "../interface"
 
 
-export interface SelectProps extends ComponentBaseProps {
+export interface SelectProps extends ComponentUnionProps {
     placeholder?:string
     name:string 
     valueSet:{[name:string]:string}
