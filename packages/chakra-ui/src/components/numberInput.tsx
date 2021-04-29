@@ -1,4 +1,4 @@
-import { ComponentBaseProps } from "../interface";
+import { ComponentBaseProps, ComponentUnionProps } from "../interface";
 import {
     NumberInput,
     NumberInputField,
@@ -7,14 +7,12 @@ import {
     NumberDecrementStepper,
 } from "@chakra-ui/react"
 
-export interface NumberInputProps extends ComponentBaseProps {
+export interface NumberInputProps extends ComponentUnionProps {
     defaultValue?: number
     min?: number
     max?: number
     step?: number
     precision?: number
-    
-
 }
 
 
