@@ -1,16 +1,14 @@
 import { Textarea } from "@chakra-ui/react"
-import { ComponentBaseProps } from "../interface"
+import { ComponentBaseProps, ComponentUnionProps } from "../interface"
 
 
-export interface TextAreaProps extends ComponentBaseProps{
+export interface TextAreaProps extends ComponentUnionProps{
     placeholder?:string
     resize?:'horizontal'|'vertical'|'none'
-    size?:'sm'|'md'|'lg'
-    varient?:"outline" | "unstyled" | "filled" | "flushed"
 }
 
 const TextAreaComp:React.FC<TextAreaProps>=(props)=>{
 
     return <Textarea  {...props}></Textarea>
 }
-export default TextAreaCompx
+export default TextAreaComp
