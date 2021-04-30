@@ -10,9 +10,10 @@
     "build": "lerna run build",
     "start": "npm run dev",
     "dev": "dumi dev"
-  
   },
-  "workspaces":["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -22,6 +23,8 @@
     "enzyme": "^3.10.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "@types/jest": "^24.9.1"
+    "@types/jest": "^24.9.1",
+    "father": "^2.30.4",
+    "father-build": "^1.18.6"
   }
 }
