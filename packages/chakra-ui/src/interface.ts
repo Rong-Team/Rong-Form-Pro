@@ -314,7 +314,7 @@ export interface SchemaField {
             accept?: string
         },
 
-        list:{
+        list?:{
             showAdd?:boolean
             addText?:string
             showRemove?:boolean
@@ -326,13 +326,13 @@ export interface SchemaField {
     uistyle?: UIInterface
     isListChild?: boolean
     listChildren?: { [name: string]: SchemaField }
-    required?: boolean
+    isRequired?: boolean
     placeholder?: string,
     defaultValue?: any,
     // list of dependencies
     dependencies?: string[],
     // used for handle dependencies
-    actions: string
+    actions?: string
     rules?: RuleObject
 }
 
