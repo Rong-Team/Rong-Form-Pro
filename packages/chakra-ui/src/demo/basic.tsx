@@ -1,5 +1,6 @@
-import { ChakraProvider, Stack } from "@chakra-ui/react"
+import { Button, ChakraProvider, Stack } from "@chakra-ui/react"
 import { useRef } from "react"
+import { IFormInstance } from "rong-form/lib/Form"
 import SchemaForm from "../form"
 import { SchemaType } from "../interface"
 
@@ -22,16 +23,17 @@ const schema:SchemaType={
             isRequired:true,
             type:"string",
             componentprops:{
-                type:"text",
+                type:"password",
                 
             }
         }
     }
 }
 const App:React.FC=()=>{
-    const form=useRef<any>()
+    const form=useRef<IFormInstance>(null)
     return <Stack>
         <SchemaForm ref={form} schema={schema}/>
+        <Button onClick={()=>console.log(form.current?.getFieldsValue())}>submit</Button>
     </Stack>
 }
 
