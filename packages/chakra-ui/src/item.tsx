@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react"
 
 
-const RenderChild: React.FC<SchemaField & { fieldName: string | string[] }> = ({ name, componentprops, title, dependencies, help, isListChild, fieldName,uistyle }) => {
+const RenderChild: React.FC<SchemaField & { fieldName: string | string[] }> = ({ name, componentprops, title, dependencies, help, isListChild, fieldName,uistyle ,rules,isRequired}) => {
 
     const fieldPorps = () => {
         const type = componentprops.type
@@ -32,24 +32,28 @@ const RenderChild: React.FC<SchemaField & { fieldName: string | string[] }> = ({
         }
     }
 
+    const getRules=()=>{
+        return {...rules,required:isRequired}
+    }
+
     const pickType = (control: any) => {
         const type = componentprops.type
         
-        let { valueSet, ...props } = componentprops[type]
+        let { ...props } = componentprops[type]
         switch (type) {
             case "checkbox":
 
-                return <CheckBox  name={name} valueSet={valueSet} {...props} {...control} />
+                return <CheckBox  name={name}  {...props} {...control} />
 
             case "number":
                 return <InputNumber {...props} {...control} />
             case "radio":
-                return <Radio valueSet={valueSet} name={name} {...props}  {...control} />
+                return <Radio  name={name} {...props}  {...control} />
             case "pinInput":
                 let { length } = componentprops['pinInput'] as any
                 return <PinInput name={name} length={length} {...props}  {...control} />
             case 'select':
-                return <Select name={name} valueSet={valueSet} {...props}  {...control} />
+                return <Select name={name} {...props}  {...control} />
             case 'range':
                 return <Slider name={name} {...props}  {...control} />
             case 'textarea':
@@ -63,18 +67,19 @@ const RenderChild: React.FC<SchemaField & { fieldName: string | string[] }> = ({
     }
 
     return (
-        <Field name={fieldName} isListField={isListChild} dependencies={dependencies}  {...fieldPorps()}>
+        <Field name={fieldName} rules={getRules()} isListField={isListChild} dependencies={dependencies}  {...fieldPorps()}>
             {
                 (control, meta, dependencies) => {
+                
                     return (
-                        <FormControl isInvalid={meta.errors.length > 0} {...uistyle}>
+                        <FormControl isRequired={isRequired} isInvalid={meta?.errors?.length > 0} {...uistyle}>
                             <FormLabel >{title}</FormLabel>
                             <FormHelperText>{help}</FormHelperText>
                             {pickType({ ...control,})}
                             {
-                                meta.errors.map((item, index) => {
-                                    return <FormErrorMessage key={name + '-error-' + index}>{item}</FormErrorMessage>
-                                })
+                               meta?.errors&& meta.errors.map((item, index) => {
+                                return <FormErrorMessage key={name + '-error-' + index}>{item}</FormErrorMessage>
+                            })
                             }
                         </FormControl>
                     )
