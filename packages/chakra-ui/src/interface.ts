@@ -163,6 +163,7 @@ export interface ValidateErrorEntity<Values = any> {
 export type RuleType =
     | 'string'
     | 'number'
+    | 'array'
     | 'boolean'
     | 'method'
     | 'regexp'
@@ -260,7 +261,7 @@ export interface IFieldStore {
 
 export interface SchemaField {
     title: string
-    name: string 
+    name: string
     help?: string
     type: 'string' | 'number' | 'boolean' | 'array' | 'object' | 'list'
     widget?: string
@@ -314,11 +315,11 @@ export interface SchemaField {
             accept?: string
         },
 
-        list?:{
-            showAdd?:boolean
-            addText?:string
-            showRemove?:boolean
-            defaultValue?:any
+        list?: {
+            showAdd?: boolean
+            addText?: string
+            showRemove?: boolean
+            defaultValue?: any
         }
 
     },
