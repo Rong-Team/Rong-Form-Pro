@@ -1,18 +1,22 @@
 import { Stack } from "@chakra-ui/react";
-import React from "react";
+import React, { useImperativeHandle, useRef } from "react";
 import { Form } from "rong-form";
+import { IFormInstance } from "rong-form/lib/Form";
 import { UIProvider } from "./context";
-import { SchemaType } from "./interface";
+import {  SchemaType } from "./interface";
 import RenderChild from "./item";
 import RenderList from "./list";
 
+export interface ISchemaForm {
+    schema:SchemaType
+}
 
-const SchemaForm: React.FC<SchemaType> = ({ name, properties, uistyle }) => {
+const SchemaForm=React.forwardRef<IFormInstance,ISchemaForm>(({ schema },ref) => {
 
 
-
+    const {name, properties, uistyle}=schema
     return (<UIProvider value={uistyle||{}}>
-        <Form>
+        <Form ref={ref}>
             <Stack>
                 {
                     Object.keys(properties).map((fieldName, index) => {
@@ -32,5 +36,5 @@ const SchemaForm: React.FC<SchemaType> = ({ name, properties, uistyle }) => {
         </Form>
     </UIProvider>)
 }
-
+)
 export default SchemaForm
