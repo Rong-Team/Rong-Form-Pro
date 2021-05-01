@@ -1,4 +1,5 @@
 import { createContext, useContext } from "react";
+import { IFieldStore, Meta } from "./interface";
 
 
 export interface UIInterface {
@@ -17,4 +18,13 @@ export const UIProvider = RootUIContext.Provider;
 export const useUI=()=>{
     const ui=useContext(RootUIContext)
     return ui
+}
+
+const RootMapContext=createContext<null|{[name:string]:(control:any,meta:Meta,dependencies?:{[name:string]:IFieldStore})=>React.Component}>(null)
+export const WidgetProvider=RootMapContext.Provider
+
+export const useWidget=()=>{
+    const widget=useContext(RootMapContext)
+  
+    return widget
 }
