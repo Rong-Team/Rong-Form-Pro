@@ -3,18 +3,21 @@ import React, { useImperativeHandle, useRef } from "react";
 import { Form } from "rong-form";
 import { IFormInstance } from "rong-form/lib/Form";
 import { UIProvider } from "./context";
-import {  SchemaType } from "./interface";
+import {  IFieldStore, Meta, SchemaType } from "./interface";
 import RenderChild from "./item";
 import RenderList from "./list";
 
 export interface ISchemaForm {
     schema:SchemaType
+    widget?:{[name:string]:(control:any,meta:Meta,dependencies?:{[name:string]:IFieldStore})=>React.Component}
+    onFinish?:(values:any,errors:any)=>void
 }
 
 const SchemaForm=React.forwardRef<IFormInstance,ISchemaForm>(({ schema },ref) => {
 
 
     const {name, properties, uistyle}=schema
+    
     return (<UIProvider value={uistyle||{}}>
         <Form ref={ref}>
             <Stack>
@@ -26,8 +29,8 @@ const SchemaForm=React.forwardRef<IFormInstance,ISchemaForm>(({ schema },ref) =>
                                 {RenderList(field)}
                             </React.Fragment>
                         } else {
-                            return <React.Fragment>
-                                {RenderChild({ ...field, fieldName: field.name })}
+                            return <React.Fragment key={name + index}>
+                                {RenderChild({ ...field, fieldName: field.name,uistyle:{...field?.uistyle,...uistyle} })}
                             </React.Fragment>
                         }
                     })
