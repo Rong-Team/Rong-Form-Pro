@@ -2,7 +2,7 @@ import { createContext, useContext } from "react";
 
 
 export interface UIInterface {
-    colorScheme?: string
+    colorScheme?: "whiteAlpha" | "blackAlpha" | "gray" | "red" | "orange" | "yellow" | "green" | "teal" | "blue" | "cyan" | "purple" | "pink" | "linkedin" | "facebook" | "messenger" | "whatsapp" | "twitter" | "telegram"
     errorBorderColor?: string
     focusBorderColor?: string
     isFullWidth?: boolean
