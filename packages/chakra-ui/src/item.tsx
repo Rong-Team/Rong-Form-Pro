@@ -16,15 +16,17 @@ import {
     FormErrorMessage,
     FormHelperText,
 } from "@chakra-ui/react"
+import { useWidget } from './context'
 
 
 
-const RenderChild: React.FC<SchemaField & { fieldName: string | string[] }> = ({ name, 
-    componentprops, 
-    title, 
-    dependencies, 
-    help, 
-    isListChild, fieldName,uistyle ,rules,isRequired,defaultValue,isReadOnly,isDisable}) => {
+const RenderChild: React.FC<SchemaField & { fieldName: string | string[] }> = ({ name,
+    componentprops,
+    title,
+    dependencies,
+    widget,
+    help,
+    isListChild, fieldName, uistyle, rules, isRequired, defaultValue, isReadOnly, isDisable, hidden }) => {
 
     const fieldPorps = () => {
         const type = componentprops.type
@@ -37,57 +39,64 @@ const RenderChild: React.FC<SchemaField & { fieldName: string | string[] }> = ({
                 return {}
         }
     }
+    const widgets = useWidget()
 
-    const getRules=()=>{
-        return {...rules,required:isRequired}
+    const getRules = () => {
+        return { ...rules, required: isRequired }
     }
-    
-   
+
+
     const pickType = (control: any) => {
         const type = componentprops.type
-        
+
         let { ...props } = componentprops[type]
         switch (type) {
             case "checkbox":
 
-                return <CheckBox  name={name}  {...props} {...control} {...uistyle} />
+                return <CheckBox name={name}  {...props} {...control} {...uistyle} />
 
             case "number":
                 return <InputNumber {...props} {...control} {...uistyle} />
             case "radio":
-                return <Radio  name={name} {...props}  {...control} {...uistyle} />
+                return <Radio name={name} {...props}  {...control} {...uistyle} />
             case "pinInput":
                 let { length } = componentprops['pinInput'] as any
                 return <PinInput name={name} length={length} {...props}  {...control} {...uistyle} />
             case 'select':
                 return <Select name={name} {...props}  {...control} {...uistyle} />
             case 'range':
-                return <Slider name={name} {...props}  {...control} {...uistyle}/>
+                return <Slider name={name} {...props}  {...control} {...uistyle} />
             case 'textarea':
                 return <TextArea {...props}  {...control} {...uistyle} />
             case 'switch':
                 return <Switch name={name} {...props}  {...control} {...uistyle} />
             default:
-                const inputProps=componentprops['input']
+                const inputProps = componentprops['input']
                 return <Input type={type} {...props} {...inputProps} {...control} {...uistyle} />
 
         }
     }
 
     return (
-        <Field name={fieldName} rules={getRules()} isListField={isListChild} dependencies={dependencies}  defaultValue={defaultValue}  {...fieldPorps()}>
+        <Field name={fieldName} rules={getRules()} isListField={isListChild} dependencies={dependencies} defaultValue={defaultValue}  {...fieldPorps()}>
             {
                 (control, meta, dependencies) => {
-                
+                    if (widget && widgets && widgets[widget]) {
+                        const comp=widgets[widget]
+                        return comp(control,meta,dependencies)
+                    }
+                    if (hidden) {
+                        return <></>
+                    }
                     return (
                         <FormControl isRequired={isRequired} isDisabled={isDisable} isReadOnly={isReadOnly} isInvalid={meta?.errors?.length > 0} {...uistyle} >
                             <FormLabel >{title}</FormLabel>
                             <FormHelperText>{help}</FormHelperText>
-                            {pickType({ ...control,})}
+                            {pickType({ ...control, })}
                             {
-                               meta?.errors&& meta.errors.map((item, index) => {
-                                return <FormErrorMessage key={name + '-error-' + index}>{item}</FormErrorMessage>
-                            })
+                                meta?.errors && meta.errors.map((item, index) => {
+                                    return <FormErrorMessage key={name + '-error-' + index}>{item}</FormErrorMessage>
+                                })
                             }
                         </FormControl>
                     )
