@@ -320,7 +320,8 @@ export interface SchemaField {
             addText?: string
             showRemove?: boolean
             defaultValue?: any
-        }
+        },
+        
 
     },
 
