@@ -321,9 +321,11 @@ export interface SchemaField {
             showRemove?: boolean
             defaultValue?: any
         },
-        text?:{
-            addAfter:string
-            addBefore:string
+        input?:{
+            addAfter?:string
+            addBefore?:string
+            prefix?:string
+            postfix?:string
         },
         
 
@@ -332,7 +334,9 @@ export interface SchemaField {
     uistyle?: UIInterface
     isListChild?: boolean
     listChildren?: { [name: string]: SchemaField }
-    isRequired?: boolean
+    isRequired?: boolean 
+    isDisable?:boolean
+    isReadOnly?:boolean
     placeholder?: string,
     defaultValue?: any,
     // list of dependencies
@@ -345,7 +349,6 @@ export interface SchemaField {
 export interface SchemaType {
     name: string
     displayType?: 'column' | 'row'
-    customized?: boolean
     properties: {
         [name: string]: SchemaField
     }
