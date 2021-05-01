@@ -16,10 +16,15 @@ import {
     FormErrorMessage,
     FormHelperText,
 } from "@chakra-ui/react"
-import { useUI } from './context'
 
 
-const RenderChild: React.FC<SchemaField & { fieldName: string | string[] }> = ({ name, componentprops, title, dependencies, help, isListChild, fieldName,uistyle ,rules,isRequired,defaultValue}) => {
+
+const RenderChild: React.FC<SchemaField & { fieldName: string | string[] }> = ({ name, 
+    componentprops, 
+    title, 
+    dependencies, 
+    help, 
+    isListChild, fieldName,uistyle ,rules,isRequired,defaultValue,isReadOnly,isDisable}) => {
 
     const fieldPorps = () => {
         const type = componentprops.type
@@ -63,18 +68,19 @@ const RenderChild: React.FC<SchemaField & { fieldName: string | string[] }> = ({
             case 'switch':
                 return <Switch name={name} {...props}  {...control} {...uistyle} />
             default:
-                return <Input type={type} {...props}  {...control} {...uistyle} />
+                const inputProps=componentprops['input']
+                return <Input type={type} {...props} {...inputProps} {...control} {...uistyle} />
 
         }
     }
 
     return (
-        <Field name={fieldName} rules={getRules()} isListField={isListChild} dependencies={dependencies} defaultValue={defaultValue}  {...fieldPorps()}>
+        <Field name={fieldName} rules={getRules()} isListField={isListChild} dependencies={dependencies}  defaultValue={defaultValue}  {...fieldPorps()}>
             {
                 (control, meta, dependencies) => {
                 
                     return (
-                        <FormControl isRequired={isRequired} isInvalid={meta?.errors?.length > 0} {...uistyle} >
+                        <FormControl isRequired={isRequired} isDisabled={isDisable} isReadOnly={isReadOnly} isInvalid={meta?.errors?.length > 0} {...uistyle} >
                             <FormLabel >{title}</FormLabel>
                             <FormHelperText>{help}</FormHelperText>
                             {pickType({ ...control,})}
