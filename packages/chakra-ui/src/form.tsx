@@ -2,7 +2,7 @@ import { Stack } from "@chakra-ui/react";
 import React, { useImperativeHandle, useRef } from "react";
 import { Form } from "rong-form";
 import { IFormInstance } from "rong-form/lib/Form";
-import { UIProvider } from "./context";
+import { UIProvider, WidgetProvider } from "./context";
 import {  IFieldStore, Meta, SchemaType } from "./interface";
 import RenderChild from "./item";
 import RenderList from "./list";
@@ -13,12 +13,12 @@ export interface ISchemaForm {
     onFinish?:(values:any,errors:any)=>void
 }
 
-const SchemaForm=React.forwardRef<IFormInstance,ISchemaForm>(({ schema },ref) => {
+const SchemaForm=React.forwardRef<IFormInstance,ISchemaForm>(({ schema,widget },ref) => {
 
 
     const {name, properties, uistyle}=schema
     
-    return (<UIProvider value={uistyle||{}}>
+    return (<WidgetProvider value={widget||{}}>
         <Form ref={ref}>
             <Stack>
                 {
@@ -37,7 +37,7 @@ const SchemaForm=React.forwardRef<IFormInstance,ISchemaForm>(({ schema },ref) =>
                 }
             </Stack>
         </Form>
-    </UIProvider>)
+    </WidgetProvider>)
 }
 )
 export default SchemaForm
