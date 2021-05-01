@@ -336,7 +336,8 @@ export interface SchemaField {
     listChildren?: { [name: string]: SchemaField }
     isRequired?: boolean 
     isDisable?:boolean
-    isReadOnly?:boolean
+    isReadOnly?:boolean,
+    hidden?:boolean
     placeholder?: string,
     defaultValue?: any,
     // list of dependencies
