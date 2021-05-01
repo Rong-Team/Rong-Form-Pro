@@ -16,6 +16,7 @@ import {
     FormErrorMessage,
     FormHelperText,
 } from "@chakra-ui/react"
+import { useUI } from './context'
 
 
 const RenderChild: React.FC<SchemaField & { fieldName: string | string[] }> = ({ name, componentprops, title, dependencies, help, isListChild, fieldName,uistyle ,rules,isRequired}) => {
@@ -35,6 +36,7 @@ const RenderChild: React.FC<SchemaField & { fieldName: string | string[] }> = ({
     const getRules=()=>{
         return {...rules,required:isRequired}
     }
+    const ui=useUI()
 
     const pickType = (control: any) => {
         const type = componentprops.type
@@ -43,25 +45,25 @@ const RenderChild: React.FC<SchemaField & { fieldName: string | string[] }> = ({
         switch (type) {
             case "checkbox":
 
-                return <CheckBox  name={name}  {...props} {...control} />
+                return <CheckBox  name={name}  {...props} {...control} {...uistyle} />
 
             case "number":
-                return <InputNumber {...props} {...control} />
+                return <InputNumber {...props} {...control} {...uistyle} />
             case "radio":
-                return <Radio  name={name} {...props}  {...control} />
+                return <Radio  name={name} {...props}  {...control} {...uistyle} />
             case "pinInput":
                 let { length } = componentprops['pinInput'] as any
-                return <PinInput name={name} length={length} {...props}  {...control} />
+                return <PinInput name={name} length={length} {...props}  {...control} {...uistyle} />
             case 'select':
-                return <Select name={name} {...props}  {...control} />
+                return <Select name={name} {...props}  {...control} {...uistyle} />
             case 'range':
-                return <Slider name={name} {...props}  {...control} />
+                return <Slider name={name} {...props}  {...control} {...uistyle}/>
             case 'textarea':
-                return <TextArea {...props}  {...control} />
+                return <TextArea {...props}  {...control} {...uistyle} />
             case 'switch':
-                return <Switch name={name} {...props}  {...control} />
+                return <Switch name={name} {...props}  {...control} {...uistyle} />
             default:
-                return <Input type={type} {...props}  {...control} />
+                return <Input type={type} {...props}  {...control} {...uistyle} />
 
         }
     }
@@ -72,7 +74,7 @@ const RenderChild: React.FC<SchemaField & { fieldName: string | string[] }> = ({
                 (control, meta, dependencies) => {
                 
                     return (
-                        <FormControl isRequired={isRequired} isInvalid={meta?.errors?.length > 0} {...uistyle}>
+                        <FormControl isRequired={isRequired} isInvalid={meta?.errors?.length > 0} {...uistyle} >
                             <FormLabel >{title}</FormLabel>
                             <FormHelperText>{help}</FormHelperText>
                             {pickType({ ...control,})}
