@@ -321,6 +321,10 @@ export interface SchemaField {
             showRemove?: boolean
             defaultValue?: any
         },
+        text?:{
+            addAfter:string
+            addBefore:string
+        },
         
 
     },
@@ -359,6 +363,7 @@ export interface ComponentBaseProps {
     onChange?: any
     value?: any
     checked?: any
+    placeholder?:string
 }
 
 
