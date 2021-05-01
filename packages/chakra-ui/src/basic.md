@@ -16,3 +16,6 @@ title: Basic
 ### Customize ui for components
 
 <code src="./demo/ui.tsx" />
+
+### Add default value for components
+<code src="./demo/defaultValues.tsx" />
