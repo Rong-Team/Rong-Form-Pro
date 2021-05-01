@@ -18,7 +18,7 @@ const Password: React.FC<InputProps> = ({size,...props}) => {
     return (
         <InputGroup size={size} >
             <Input
-                pr="4.5rem"
+               // pr="4.5rem"
                 type={show ? "text" : "password"}
                 {...props}
                 
