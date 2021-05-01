@@ -15,7 +15,7 @@ const schema:SchemaType={
             isRequired:true,
             componentprops:{
                 type:"text",
-
+               
             }
         },
         pwd:{
