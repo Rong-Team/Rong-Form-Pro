@@ -26,7 +26,8 @@ const schema:SchemaType={
             componentprops:{
                 type:"password",
                 
-            }
+            },
+            
         }
     },
     uistyle:{
