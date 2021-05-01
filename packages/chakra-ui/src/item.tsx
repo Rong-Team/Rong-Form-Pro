@@ -19,7 +19,7 @@ import {
 import { useUI } from './context'
 
 
-const RenderChild: React.FC<SchemaField & { fieldName: string | string[] }> = ({ name, componentprops, title, dependencies, help, isListChild, fieldName,uistyle ,rules,isRequired}) => {
+const RenderChild: React.FC<SchemaField & { fieldName: string | string[] }> = ({ name, componentprops, title, dependencies, help, isListChild, fieldName,uistyle ,rules,isRequired,defaultValue}) => {
 
     const fieldPorps = () => {
         const type = componentprops.type
@@ -36,8 +36,8 @@ const RenderChild: React.FC<SchemaField & { fieldName: string | string[] }> = ({
     const getRules=()=>{
         return {...rules,required:isRequired}
     }
-    const ui=useUI()
-
+    
+   
     const pickType = (control: any) => {
         const type = componentprops.type
         
@@ -69,7 +69,7 @@ const RenderChild: React.FC<SchemaField & { fieldName: string | string[] }> = ({
     }
 
     return (
-        <Field name={fieldName} rules={getRules()} isListField={isListChild} dependencies={dependencies}  {...fieldPorps()}>
+        <Field name={fieldName} rules={getRules()} isListField={isListChild} dependencies={dependencies} defaultValue={defaultValue}  {...fieldPorps()}>
             {
                 (control, meta, dependencies) => {
                 
