@@ -9,10 +9,10 @@ import { useUI } from "./context";
 
 
 
-const RenderList: React.FC<SchemaField> = ({ listChildren , name, defaultValue,...props }) => {
+const RenderList: React.FC<SchemaField & {widgets?:any}> = ({ listChildren , name, defaultValue,widgets,...props }) => {
 
     const listInfo=props?.componentprops?.list
-    const uistyle=useUI()
+   
     if(listChildren){
         return <ListForm name={name}>
         {
@@ -29,7 +29,7 @@ const RenderList: React.FC<SchemaField> = ({ listChildren , name, defaultValue,.
                                                 return <></>
                                             }
                                             return <React.Fragment key={name + '-' + index2}>
-                                                {RenderChild({ ...curValue, fieldName: [field.name, curValue.name],uistyle:uistyle||curValue?.uistyle })}
+                                                {RenderChild({ ...curValue, fieldName: [field.name, curValue.name], widgets})}
                                             </React.Fragment>
                                         })
                                     }
