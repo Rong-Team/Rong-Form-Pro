@@ -1,6 +1,6 @@
 import { SchemaField } from './interface'
 import { Field } from 'rong-form'
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useContext, useEffect } from 'react'
 import CheckBox from './components/checkbox'
 import InputNumber from './components/numberInput'
 import Radio from './components/radio'
@@ -16,17 +16,17 @@ import {
     FormErrorMessage,
     FormHelperText,
 } from "@chakra-ui/react"
-import { useWidget } from './context'
+import { RootMapContext, useWidget } from './context'
 
 
 
-const RenderChild: React.FC<SchemaField & { fieldName: string | string[] }> = ({ name,
+const RenderChild: React.FC<SchemaField & { fieldName: string | string[],widgets?:any }> = ({ name,
     componentprops,
     title,
     dependencies,
     widget,
     help,
-    isListChild, fieldName, uistyle, rules, isRequired, defaultValue, isReadOnly, isDisable, hidden }) => {
+    isListChild, fieldName, uistyle, rules, isRequired, defaultValue, isReadOnly, isDisable, hidden ,widgets}) => {
 
     const fieldPorps = () => {
         const type = componentprops.type
@@ -39,7 +39,7 @@ const RenderChild: React.FC<SchemaField & { fieldName: string | string[] }> = ({
                 return {}
         }
     }
-    const widgets = useWidget()
+    
 
     const getRules = () => {
         return { ...rules, required: isRequired }
@@ -81,7 +81,9 @@ const RenderChild: React.FC<SchemaField & { fieldName: string | string[] }> = ({
         <Field name={fieldName} rules={getRules()} isListField={isListChild} dependencies={dependencies} defaultValue={defaultValue}  {...fieldPorps()}>
             {
                 (control, meta, dependencies) => {
+                    
                     if (widget && widgets && widgets[widget]) {
+                       
                         const comp=widgets[widget]
                         return comp(control,meta,dependencies)
                     }
