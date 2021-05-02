@@ -268,7 +268,7 @@ export interface SchemaField {
     componentprops: {
 
         type: 'checkbox' | 'color' | 'date' | 'datetime-local' | 'email' | 'password' | 'url' |
-        'file' | 'month' | 'number' | 'radio' | 'range' | 'week' | 'text' | 'select' | 'pinInput' | 'textarea' | 'switch'
+        'file' | 'month' | 'number' | 'radio' | 'range' | 'week' | 'text' | 'select' | 'pinInput' | 'textarea' | 'switch'|'customized'
         trigger?: string
         valueProps?: string
         select?: {
