@@ -17,7 +17,7 @@ export interface ISchemaForm {
 const SchemaForm = React.forwardRef<IFormInstance, ISchemaForm>(({ schema, widget }, ref) => {
 
 
-    const { name, properties, uistyle } = schema
+    const { name, properties, uistyle,displayType} = schema
 
     return (
 

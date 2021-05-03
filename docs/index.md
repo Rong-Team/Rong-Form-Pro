@@ -24,7 +24,7 @@ npm install @rong-form-pro/chakra
 ```
 ###### Integration with material-ui:
 ```bash
-npm install @rong-form-pro/chakra
+npm install @rong-form-pro/material
 
 ```
 ###### Integration with react-bootstrap:
