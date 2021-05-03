@@ -267,7 +267,7 @@ export interface SchemaField {
     widget?: string
     componentprops: {
 
-        type: 'checkbox' | 'color' | 'date' | 'datetime-local' | 'email' | 'password' | 'url' |
+        type: 'checkbox' | 'color' | 'date' | 'datetime-local' | 'email' | 'password' | 'url' |'time'|
         'file' | 'month' | 'number' | 'radio' | 'range' | 'week' | 'text' | 'select' | 'pinInput' | 'textarea' | 'switch'|'customized'
         trigger?: string
         valueProps?: string
@@ -300,6 +300,7 @@ export interface SchemaField {
         radio?: {
             valueSet: { [name: string]: string }
         },
+        
         pinInput?: {
             length: number
             type?: 'alphanumeric' | 'number'
@@ -332,6 +333,7 @@ export interface SchemaField {
     },
 
     uistyle?: UIInterface
+    
     isListChild?: boolean
     listChildren?: { [name: string]: SchemaField }
     isRequired?: boolean 
@@ -349,7 +351,7 @@ export interface SchemaField {
 
 export interface SchemaType {
     name: string
-    displayType?: 'column' | 'row'
+    displayType?: 'column' | 'row' |'inline'
     properties: {
         [name: string]: SchemaField
     }
