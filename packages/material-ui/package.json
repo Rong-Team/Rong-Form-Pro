@@ -12,7 +12,14 @@
   "dependencies": {
     "rong-form": "^0.1.0"
   },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "@material-ui/core": "^4.11.4"
+  },
   "devDependencies": {
+    "@material-ui/core": "^4.11.4",
+    "@types/react": "^17.0.4",
+    "react": "^17.0.2",
     "typescript": "^4.2.4"
   }
 }
