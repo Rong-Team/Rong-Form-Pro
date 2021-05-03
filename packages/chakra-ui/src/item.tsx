@@ -16,17 +16,17 @@ import {
     FormErrorMessage,
     FormHelperText,
 } from "@chakra-ui/react"
-import { RootMapContext, useWidget } from './context'
 
 
 
-const RenderChild: React.FC<SchemaField & { fieldName: string | string[],widgets?:any }> = ({ name,
+
+const RenderChild: React.FC<SchemaField & { fieldName: string | string[],widgets?:any,displayType?:any }> = ({ name,
     componentprops,
     title,
     dependencies,
     widget,
     help,
-    isListChild, fieldName, uistyle, rules, isRequired, defaultValue, isReadOnly, isDisable, hidden ,widgets}) => {
+    isListChild, fieldName, uistyle, rules, isRequired, defaultValue, isReadOnly, isDisable, hidden ,widgets,displayType}) => {
 
     const fieldPorps = () => {
         const type = componentprops.type
@@ -49,7 +49,7 @@ const RenderChild: React.FC<SchemaField & { fieldName: string | string[],widgets
     const pickType = (control: any) => {
         const type = componentprops.type
 
-        let { ...props } = componentprops[type]
+        let props = componentprops[type]
         switch (type) {
             case "checkbox":
 
@@ -72,6 +72,11 @@ const RenderChild: React.FC<SchemaField & { fieldName: string | string[],widgets
                 return <Switch name={name} {...props}  {...control} {...uistyle} />
             default:
                 const inputProps = componentprops['input']
+                if(type==='datetime-local'||type==='month'||type==='time') {
+                    props=componentprops['date']
+                }
+
+                
                 return <Input type={type} {...props} {...inputProps} {...control} {...uistyle} />
 
         }
@@ -91,7 +96,7 @@ const RenderChild: React.FC<SchemaField & { fieldName: string | string[],widgets
                         return <></>
                     }
                     return (
-                        <FormControl isRequired={isRequired} isDisabled={isDisable} isReadOnly={isReadOnly} isInvalid={meta?.errors?.length > 0} {...uistyle} >
+                        <FormControl  isRequired={isRequired} isDisabled={isDisable} isReadOnly={isReadOnly} isInvalid={meta?.errors?.length > 0} {...uistyle} >
                             <FormLabel >{title}</FormLabel>
                             <FormHelperText>{help}</FormHelperText>
                             {pickType({ ...control, })}
