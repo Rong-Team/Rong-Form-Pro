@@ -371,10 +371,10 @@ export interface ComponentBaseProps {
     value?: any
     checked?: any
     placeholder?:string
-    label:string
+    label?:string
 }
 
 
 
 
-export type ComponentUnionProps = ComponentBaseProps &{uistyle?:UIInterface}
+export type ComponentUnionProps = ComponentBaseProps
