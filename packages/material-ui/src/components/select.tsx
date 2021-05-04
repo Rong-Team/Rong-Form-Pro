@@ -12,9 +12,11 @@ const SelectComp:React.FC<SelectProps>=({
             Object.keys(valueSet).map((name,index)=>{
                 return <MenuItem value={valueSet[name]} key={name+index}>{
                     name
-                }
+                } 
                 </MenuItem> 
             })
         }
     </Select>
 }
+
+export default SelectComp
