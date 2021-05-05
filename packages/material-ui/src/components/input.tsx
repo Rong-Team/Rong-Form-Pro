@@ -21,7 +21,7 @@ export interface InputProps extends ComponentUnionProps {
     min?: any
     max?: any
     step?: any
-
+    accept?:string
 
   }
 }
