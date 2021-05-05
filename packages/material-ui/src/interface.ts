@@ -2,7 +2,9 @@
 import React from 'react';
 import { ReactElement, ReducerAction } from 'react';
 export interface UIInterface {
-
+    size?:'small'
+    labelPlacement?:'top'|'bottom'|'left'|'right'
+    color?:'primary'|'default'|'secondary'
 }
 
 
@@ -288,26 +290,24 @@ export interface SchemaField {
             min?: number
             max?: number
             step?: number
-            orientation?: 'vertical' | 'horizontal'
+            orientation?: 'vertical' | 'horizontal',
+            track?:'inverted'
         },
         number?: {
             min?: number
             max?: number
             step?: number
-            precision?: number
+
         },
         textarea?: {
-            resize?: 'horizontal' | 'vertical' | 'none'
+            rows?:number
+            rowMax?:number
+            rowMin?:number
         }
         radio?: {
             valueSet: { [name: string]: string }
         },
-        pinInput?: {
-            length: number
-            type?: 'alphanumeric' | 'number'
-            opt?: boolean
-            mask?: boolean
-        }
+
         //used in date related
         date?: {
             min?: string,
@@ -329,7 +329,10 @@ export interface SchemaField {
             prefix?:string
             postfix?:string
         },
-        
+        switch?:{
+            
+
+        }
 
     },
 
@@ -377,4 +380,4 @@ export interface ComponentBaseProps {
 
 
 
-export type ComponentUnionProps = ComponentBaseProps
+export type  ComponentUnionProps = ComponentBaseProps
