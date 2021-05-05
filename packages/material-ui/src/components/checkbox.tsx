@@ -3,23 +3,23 @@ import { useState } from "react";
 import { ComponentUnionProps } from "../interface";
 
 
-export interface CheckBoxProps extends Omit<ComponentUnionProps,'disabled'> {
-    valueSet:{[name:string]:string}
-    name:string
-    title:string
-    disabled?:string[]
-   
+export interface CheckBoxProps extends Omit<ComponentUnionProps, 'disabled'> {
+    valueSet: { [name: string]: string }
+    name: string
+    title: string
+    disabled?: string[]
+
 }
-const CheckBox:React.FC<CheckBoxProps>=({valueSet,value,onChange,name,disabled,})=>{
+const CheckBox: React.FC<CheckBoxProps> = ({ valueSet, value, onChange, name, disabled, }) => {
     const [values, setvalues] = useState<string[]>(value)
 
-    const triggerChange=(name:string,value:boolean)=>{
-        if(value){
-            let cur=[...values,name]
+    const triggerChange = (name: string, value: boolean) => {
+        if (value) {
+            let cur = [...values, name]
             setvalues(cur)
             onChange(cur)
-        }else{
-            let cur=values.filter(item=>item===name)
+        } else {
+            let cur = values.filter(item => item === name)
             onChange(cur)
             setvalues(cur)
         }
@@ -27,11 +27,14 @@ const CheckBox:React.FC<CheckBoxProps>=({valueSet,value,onChange,name,disabled,}
     return (
         <FormGroup>
             {
-                Object.keys(valueSet).map((valuename,index)=>{
-                        <FormControlLabel  key={name+index}
+                Object.keys(valueSet).map((valuename, index) => {
+                    <FormControlLabel key={name + index}
+                        disabled={disabled?.includes(valueSet[valuename])} 
+                        value={valueSet[valuename]} 
+                        onChange={(_,checked) => triggerChange(valueSet[valuename], checked)} checked={values?.includes(valueSet[valuename])}
                         label={valuename}
-                            control={<Checkbox disabled={disabled?.includes(valueSet[valuename])} value={valueSet[valuename]} onChange={e=>triggerChange(valueSet[valuename],e.target.checked)}  checked={values?.includes(valueSet[valuename])} />}
-                        />
+                        control={<Checkbox />}
+                    />
                 })
             }
         </FormGroup>
