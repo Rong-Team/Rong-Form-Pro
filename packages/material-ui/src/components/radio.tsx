@@ -4,18 +4,21 @@ import { ComponentUnionProps } from "../interface";
 
 export interface RadioProps extends ComponentUnionProps {
     row?:boolean
-    valueSet:{[name:string]:string}
+    valueSet?:{[name:string]:string}
     name:string
 }
 
 const RadioComo:React.FC<RadioProps>=({valueSet,name,checked,onChange,...props})=>{
-
+    if(!valueSet){
+        console.error(`field ${name} doesn't contain valueSet`)
+        return <></>
+    }
     return (
         <RadioGroup  {...props}>
             {
                 Object.keys(valueSet).map((item,index)=>{
                     return (
-                        <FormControlLabel   key={name+index} checked={checked } onChange={e=>onChange(e)} value={valueSet[item]} label={item} control={<Radio/>} />
+                        <FormControlLabel   key={item+index} checked={checked } onChange={e=>onChange(e)} value={valueSet[item]} label={item} control={<Radio/>} />
                     )
                 })
             }
