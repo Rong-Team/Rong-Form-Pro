@@ -4,7 +4,8 @@ import { ReactElement, ReducerAction } from 'react';
 export interface UIInterface {
     size?:'small'
     labelPlacement?:'top'|'bottom'|'left'|'right'
-    color?:'primary'|'default'|'secondary'
+    color?:'primary'|'secondary'
+    variant?:'filled'|'outlined'
 }
 
 
