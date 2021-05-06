@@ -1,12 +1,13 @@
 import { Checkbox, FormControl, FormControlLabel, FormGroup } from "@material-ui/core";
 import { useState } from "react";
+import { warning } from "../../../chakra-ui/src/components/utils";
 import { ComponentUnionProps } from "../interface";
 
 
 export interface CheckBoxProps extends Omit<ComponentUnionProps, 'disabled'> {
     valueSet: { [name: string]: string }
     name: string
-    title: string
+
     disabled?: string[]
 
 }
@@ -23,6 +24,10 @@ const CheckBox: React.FC<CheckBoxProps> = ({ valueSet, value, onChange, name, di
             onChange(cur)
             setvalues(cur)
         }
+    }
+    if(!valueSet){
+        console.error(`field ${name} doesn't contain valueSet`)
+        return <></>
     }
     return (
         <FormGroup>
