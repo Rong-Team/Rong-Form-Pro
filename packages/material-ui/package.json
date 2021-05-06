@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/icons": "^4.11.2",
     "rong-form": "^0.1.0"
   },
   "peerDependencies": {
