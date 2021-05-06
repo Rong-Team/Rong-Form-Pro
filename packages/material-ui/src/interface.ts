@@ -272,7 +272,7 @@ export interface SchemaField {
     componentprops: {
 
         type: 'checkbox' | 'color' | 'date' | 'datetime-local' | 'email' | 'password' | 'url' |'time'|
-        'file' | 'month' | 'number' | 'radio' | 'range' | 'week' | 'text' | 'select' | 'pinInput' | 'textarea' | 'switch'|'customized'
+        'file' | 'month' | 'number' | 'radio' | 'range' | 'week' | 'text' | 'select'  | 'textarea' | 'switch'|'customized'
         trigger?: string
         valueProps?: string
         select?: {
@@ -282,7 +282,7 @@ export interface SchemaField {
         checkbox?: {
             valueSet: { [name: string]: string },
             disabled?: string[]
-            direction?: 'column' | 'row'
+            
         }
 
         // used in range and number
@@ -306,6 +306,7 @@ export interface SchemaField {
         }
         radio?: {
             valueSet: { [name: string]: string }
+            row?:boolean
         },
 
         //used in date related
@@ -329,10 +330,7 @@ export interface SchemaField {
             prefix?:string
             postfix?:string
         },
-        switch?:{
-            
-
-        }
+        
 
     },
 
