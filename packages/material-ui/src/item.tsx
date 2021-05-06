@@ -36,7 +36,7 @@ const RenderItem:React.FC<ChildProps>=({name,componentprops})=>{
                     props=componentprops['date']
                     return <DatePicker {...props} {...control} />
                 }
-                return <Input type={comptype} inputProps={props} />
+                return <Input type={comptype} inputProps={props}  />
         }
     }
 
