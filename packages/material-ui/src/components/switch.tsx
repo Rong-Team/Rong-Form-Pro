@@ -11,4 +11,4 @@ const SwitchComp:React.FC<SwitchProps> =(props)=>{
     return <Switch {...props} />
 }
 
-export default SwitchProps
+export default SwitchComp
