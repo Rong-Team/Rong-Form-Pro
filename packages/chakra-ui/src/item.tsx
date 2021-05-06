@@ -1,6 +1,6 @@
 import { SchemaField } from './interface'
 import { Field } from 'rong-form'
-import React, { ReactNode, useContext, useEffect } from 'react'
+import React from 'react'
 import CheckBox from './components/checkbox'
 import InputNumber from './components/numberInput'
 import Radio from './components/radio'
@@ -72,7 +72,7 @@ const RenderChild: React.FC<SchemaField & { fieldName: string | string[],widgets
                 return <Switch name={name} {...props}  {...control} {...uistyle} />
             default:
                 const inputProps = componentprops['input']
-                if(type==='datetime-local'||type==='month'||type==='time') {
+                if(type==='datetime-local'||type==='month'||type==='time'||type==='week') {
                     props=componentprops['date']
                 }
 
