@@ -42,7 +42,7 @@ const RenderChild: React.FC<SchemaField & { fieldName: string | string[],widgets
     
 
     const getRules = () => {
-        return { ...rules, required: isRequired }
+        return { ...rules, required: isRequired, }
     }
 
 
