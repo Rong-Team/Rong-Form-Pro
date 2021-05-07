@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { ComponentUnionProps, UIInterface } from '../interface';
 import Password from './password';
-import { Input as MaterialInput, FilledInput, OutlinedInput } from '@material-ui/core';
+import { Input as MaterialInput, FilledInput, OutlinedInput, InputAdornment } from '@material-ui/core';
 
 
 type InputType = ComponentUnionProps & UIInterface
@@ -19,10 +19,11 @@ export interface InputProps extends InputType {
   postfix?: string
 }
 
-const Input: React.FC<InputProps> = ({ type, inputProps, variant, ...props }) => {
+const Input: React.FC<InputProps> = ({ type, inputProps, variant, prefix, postfix, ...props }) => {
 
   if (type === 'password') {
     return <Password {...props} />
+
   }
   if (variant === 'filled') {
     return (
@@ -30,8 +31,10 @@ const Input: React.FC<InputProps> = ({ type, inputProps, variant, ...props }) =>
 
         type={type}
 
-
-
+        startAdornment={prefix && <InputAdornment position="start" >
+          {prefix}
+        </InputAdornment>}
+        endAdornment={postfix && <InputAdornment position="end">{postfix}</InputAdornment>}
         {
         ...props
         }
@@ -47,6 +50,10 @@ const Input: React.FC<InputProps> = ({ type, inputProps, variant, ...props }) =>
 
 
 
+        startAdornment={prefix && <InputAdornment position="start" >
+          {prefix}
+        </InputAdornment>}
+        endAdornment={postfix && <InputAdornment position="end">{postfix}</InputAdornment>}
         {
         ...props
         }
@@ -55,13 +62,17 @@ const Input: React.FC<InputProps> = ({ type, inputProps, variant, ...props }) =>
         }} />
     )
   }
-  return (<Input
+  return (<MaterialInput
 
 
     type={type}
 
+    startAdornment={prefix && <InputAdornment position="start" >
+      {prefix}
+    </InputAdornment>}
 
 
+    endAdornment={postfix && <InputAdornment position="end">{postfix}</InputAdornment>}
     {
     ...props
     }
