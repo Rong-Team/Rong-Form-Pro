@@ -1,3 +1,4 @@
+import { FormControl, FormControlLabel, FormHelperText, InputLabel } from '@material-ui/core'
 import React from 'react'
 import {Field} from 'rong-form'
 import CheckBox from './components/checkbox'
@@ -9,8 +10,8 @@ import Slider from './components/slider'
 import Switch from './components/switch'
 import TextArea from './components/textarea'
 import { SchemaField } from './interface'
-export type ChildProps = SchemaField & {}
-const RenderItem:React.FC<ChildProps>=({name,componentprops})=>{
+export type ChildProps = SchemaField & {widgets?:any}
+const RenderItem:React.FC<ChildProps>=({name,rules,required,disabled,widget,widgets,help,componentprops})=>{
 
     const mapComponent=(control:any)=>{
         const comptype=componentprops.type
@@ -36,11 +37,48 @@ const RenderItem:React.FC<ChildProps>=({name,componentprops})=>{
                     props=componentprops['date']
                     return <DatePicker {...props} {...control} />
                 }
-                return <Input type={comptype} inputProps={props}  />
+                return <Input type={comptype} inputProps={props} {...control} {...inputProps} />
         }
     }
 
-    return <Field name={name}>
+    const fieldPorps = () => {
+        const type = componentprops.type
+        switch (type) {
+            case 'file':
+                return { valuePropName: 'fileList' }
+            case 'switch':
+                return { valuePropName: 'checked' }
+            default:
+                return {}
+        }
+    }
+    const getRules = () => {
+        return { ...rules, required, }
+    }
 
+
+    return <Field name={name} rules={getRules()} {...fieldPorps()}>
+        {
+            (control,meta,dependencies)=>{
+                if(widget&&widgets && widgets[widget]){
+                    const comp=widgets[widget]
+                    return comp(control,meta,dependencies)
+                }
+                return <FormControl required={required} disabled={disabled} error={meta?.errors?.length>0}>
+                    <InputLabel required={required} disabled={disabled} error={meta?.errors?.length>0} />
+                    {
+                        mapComponent(control)
+                    }
+                    <FormHelperText  >{help}</FormHelperText>
+                    {
+                        meta?.errors?.map((item,index)=>{
+                            return <FormHelperText key={`error-${item}-${index}`} error={true}>{item}</FormHelperText>
+                        })
+                    }
+                </FormControl>
+            }
+        }
     </Field>
 }
+
+export default RenderItem
