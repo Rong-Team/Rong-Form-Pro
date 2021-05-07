@@ -326,8 +326,7 @@ export interface SchemaField {
             defaultValue?: any
         },
         input?:{
-            addAfter?:string
-            addBefore?:string
+
             prefix?:string
             postfix?:string
         },
@@ -339,9 +338,9 @@ export interface SchemaField {
     
     isListChild?: boolean
     listChildren?: { [name: string]: SchemaField }
-    isRequired?: boolean 
-    isDisable?:boolean
-    isReadOnly?:boolean,
+    required?: boolean 
+    disabled?:boolean
+    readOnly?:boolean,
     hidden?:boolean
     placeholder?: string,
     defaultValue?: any,
